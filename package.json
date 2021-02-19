@@ -13,9 +13,11 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "build-bundle": "vue-cli-service build --target lib --name datetimepicker src/build.js",
+    "build-page": "npx vue-cli-service build src/main.js",
     "prepublish": "npm run build-bundle",
     "test": "vue-cli-service test:unit",
-    "deploy": "gh-pages -d dist"
+    "publish": "npm run prepublish",
+    "deploy:page": "gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^2.5.17"
@@ -65,7 +67,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lazy-bee/components.git"
+    "url": "git+https://github.com/vue-datetimepicker/package"
   },
   "keywords": [
     "vue",
@@ -83,7 +85,7 @@
   "author": "lazy-copilot",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lazy-bee/components/issues"
+    "url": "https://github.com/vue-datetimepicker/package/issues"
   },
-  "homepage": "https://github.com/lazy-bee/components/tree/master/packages/dateTimePicker#readme"
+  "homepage": "https://github.com/vue-datetimepicker/package/tree/master/packages/dateTimePicker#readme"
 }
