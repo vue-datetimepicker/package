@@ -2,10 +2,14 @@
 
 > RWD friendly date+time picker for Vue. Supports date, datetime and time modes, and disabling dates.
 
-
 [![NPM](https://nodei.co/npm/@lazy-copilot/datetimepicker.png?downloads=true&downloadRank=true)](https://www.npmjs.com/package/@lazy-copilot/datetimepicker)
 
 
+## Demo
+[https://vue-datetimepicker.github.io/package/](https://vue-datetimepicker.github.io/package/)
+
+
+## Description
 
 The `DateTimePicker` components  are designed to fit all  `date` and `time` selection, including features of :
  - Drop down Date&Time Picker.
