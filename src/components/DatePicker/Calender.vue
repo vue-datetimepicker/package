@@ -36,6 +36,7 @@
 
 <script>
 import utils from "../../lib/date";
+import {addZeroToString} from "../../lib/common"
 
 const isToday = otherDay => {
   const today = new Date();
@@ -60,6 +61,23 @@ export default {
       default: false
     }
   },
+  computed: {
+    startWeekday: function() {
+      const {currentYYMMString} = this
+      return utils.getWeekday(
+        new Date(`${currentYYMMString}-01`).getTime()
+      );
+    },
+
+    daysCount: function() {
+      return utils.daysInMonth(this.year, this.month);
+    },
+
+    currentYYMMString: function() {
+      const _m = addZeroToString(`${this.month + 1}`)
+      return `${this.year}-${_m}`
+    }
+  },
   methods: {
     callOnChange: function(returnData) {
       if (this.$listeners.onChange) {
@@ -73,12 +91,13 @@ export default {
     updateSelectingSingleDay: function(day) {
       if (!day) return;
 
-      const { year, month, innerStartDate, innerEndDate } = this;
-      const currentDay = new Date(`${year}-${month + 1}-${day}`);
+      const { currentYYMMString, innerStartDate, innerEndDate } = this;
+      const currentDay = new Date(`${currentYYMMString}-${addZeroToString(day)}`);
 
       this.innerStartDate = currentDay;
       this.innerEndDate = currentDay;
       this.selectedDay = day;
+
       return this.callOnChange({
         selectedDay: currentDay,
         startDate: this.innerStartDate
@@ -88,14 +107,13 @@ export default {
       if (!day) return;
 
       const {
-        year,
-        month,
+        currentYYMMString,
         innerStartDate,
         innerEndDate,
         isSelectingStartDay
       } = this;
 
-      const currentDay = new Date(`${year}-${month + 1}-${day}`);
+      const currentDay = new Date(`${currentYYMMString}-${addZeroToString(day)}`);
 
       // reset
       if (
@@ -119,8 +137,8 @@ export default {
     },
 
     getDayStyle: function(day) {
-      const { innerStartDate, innerEndDate, year, month } = this;
-      const currentDay = new Date(`${year}-${month + 1}-${day}`);
+      const { innerStartDate, innerEndDate, currentYYMMString } = this;
+      const currentDay = new Date(`${currentYYMMString}-${addZeroToString(day)}`);
 
       if (utils.isSameDay(currentDay, innerStartDate)) return "innerStartDate";
       if (utils.isSameDay(currentDay, innerEndDate)) return "innerEndDate";
@@ -131,19 +149,8 @@ export default {
       return "";
     }
   },
-  computed: {
-    startWeekday: function() {
-      return utils.getWeekday(
-        new Date(`${this.year}-${this.month + 1}-01`).getTime()
-      );
-    },
-
-    daysCount: function() {
-      return utils.daysInMonth(this.year, this.month);
-    }
-  },
   data() {
-    const { month, startDate, endDate, singleDate } = this;
+    const { startDate, endDate, singleDate } = this;
     return {
       selectedDay: null,
       isSelectingStartDay: true, // either startDay or endDay

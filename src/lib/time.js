@@ -1,3 +1,4 @@
+import {addZeroToString} from './common'
 export const formatConfig = {
   HOUR_TYPES: ["HH", "H", "hh", "h", "kk", "k"],
   MINUTE_TOKENS: ["mm", "m"],
@@ -7,10 +8,6 @@ export const formatConfig = {
 
 export const MINUTE = "minute";
 export const SECOND = "second";
-
-const addZeroToString = num => {
-  return num < 10 ? `0${num}` : `${num}`;
-};
 
 export const checkAcceptingType = (
   validValues,

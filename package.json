@@ -6,7 +6,7 @@
   "browser": {
     "./sfc": "src/components/datetimepicker.vue"
   },
-  "version": "0.1.49",
+  "version": "0.1.48",
   "scripts": {
     "precommit": "lint-staged; npm test",
     "dev": "npm run serve",
@@ -16,7 +16,6 @@
     "build-page": "npx vue-cli-service build src/main.js",
     "prepublish": "npm run build-bundle",
     "test": "vue-cli-service test:unit",
-    "publish": "npm run prepublish",
     "deploy:page": "gh-pages -d dist"
   },
   "dependencies": {
